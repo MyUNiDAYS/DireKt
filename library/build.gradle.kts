@@ -8,6 +8,9 @@ val PUBLISH_NAME: String by project
 group = MODULE_PACKAGE_NAME
 version = MODULE_VERSION_NUMBER
 
+val coroutines_version = "1.6.0-native-mt"
+val ktor_version = "2.0.0"
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
@@ -42,7 +45,13 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 
 kotlin {
     js(BOTH) {
-        browser { }
+        browser {
+            testTask {
+                useKarma {
+                    useChromeHeadless()
+                }
+            }
+        }
     }
     android {
         publishAllLibraryVariants()
@@ -62,10 +71,17 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+                implementation("io.ktor:ktor-http:$ktor_version")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version")
+                implementation("app.cash.turbine:turbine:0.7.0")
             }
         }
         val jsMain by getting
