@@ -9,7 +9,7 @@ group = MODULE_PACKAGE_NAME
 version = MODULE_VERSION_NUMBER
 
 val coroutines_version = "1.6.0-native-mt"
-val ktor_version = "2.0.0"
+val ktor_version = "2.1.3"
 
 plugins {
     kotlin("multiplatform")
