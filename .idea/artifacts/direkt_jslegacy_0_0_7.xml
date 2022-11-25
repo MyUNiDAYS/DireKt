@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="direkt-jslegacy-0.0.7">
+    <output-path>$PROJECT_DIR$/library/build/libs</output-path>
+    <root id="archive" name="direkt-jslegacy-0.0.7.jar">
+      <element id="module-output" name="direkt.direkt.jsMain" />
+    </root>
+  </artifact>
+</component>
